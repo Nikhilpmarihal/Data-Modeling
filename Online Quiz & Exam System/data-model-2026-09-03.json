@@ -1,0 +1,1156 @@
+{
+  "tables": [
+    {
+      "id": "t-students",
+      "name": "students",
+      "fields": [
+        {
+          "id": "f-stu-id",
+          "name": "student_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-stu-email",
+          "name": "email",
+          "type": "VARCHAR(255)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": true
+        },
+        {
+          "id": "f-stu-name",
+          "name": "name",
+          "type": "VARCHAR(255)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-stu-enroll",
+          "name": "enrollment_date",
+          "type": "TIMESTAMP",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-stu-active",
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "t-courses",
+      "name": "courses",
+      "fields": [
+        {
+          "id": "f-cou-id",
+          "name": "course_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cou-name",
+          "name": "course_name",
+          "type": "VARCHAR(255)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cou-desc",
+          "name": "description",
+          "type": "TEXT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-cou-threshold",
+          "name": "passing_threshold",
+          "type": "DECIMAL(5,2)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cou-active",
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cou-created",
+          "name": "created_at",
+          "type": "TIMESTAMP",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "t-quizzes",
+      "name": "quizzes",
+      "fields": [
+        {
+          "id": "f-qui-id",
+          "name": "quiz_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-course",
+          "name": "course_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-courses",
+            "fieldId": "f-cou-id"
+          }
+        },
+        {
+          "id": "f-qui-name",
+          "name": "quiz_name",
+          "type": "VARCHAR(255)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-desc",
+          "name": "description",
+          "type": "TEXT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-time",
+          "name": "time_limit_minutes",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-attempts",
+          "name": "max_attempts",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-pass",
+          "name": "passing_score",
+          "type": "DECIMAL(5,2)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-active",
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-qui-created",
+          "name": "created_at",
+          "type": "TIMESTAMP",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "t-questions",
+      "name": "questions",
+      "fields": [
+        {
+          "id": "f-que-id",
+          "name": "question_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-que-quiz",
+          "name": "quiz_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-quizzes",
+            "fieldId": "f-qui-id"
+          }
+        },
+        {
+          "id": "f-que-text",
+          "name": "question_text",
+          "type": "TEXT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-que-type",
+          "name": "question_type",
+          "type": "VARCHAR(50)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-que-points",
+          "name": "points",
+          "type": "DECIMAL(5,2)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-que-correct",
+          "name": "correct_answer",
+          "type": "TEXT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-que-order",
+          "name": "order_in_quiz",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "t-choices",
+      "name": "answer_choices",
+      "fields": [
+        {
+          "id": "f-cho-id",
+          "name": "choice_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cho-question",
+          "name": "question_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-questions",
+            "fieldId": "f-que-id"
+          }
+        },
+        {
+          "id": "f-cho-text",
+          "name": "choice_text",
+          "type": "TEXT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cho-correct",
+          "name": "is_correct",
+          "type": "BOOLEAN",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-cho-order",
+          "name": "order_in_question",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "t-attempts",
+      "name": "quiz_attempts",
+      "fields": [
+        {
+          "id": "f-att-id",
+          "name": "attempt_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-att-student",
+          "name": "student_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-students",
+            "fieldId": "f-stu-id"
+          }
+        },
+        {
+          "id": "f-att-quiz",
+          "name": "quiz_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-quizzes",
+            "fieldId": "f-qui-id"
+          }
+        },
+        {
+          "id": "f-att-started",
+          "name": "started_at",
+          "type": "TIMESTAMP",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-att-submitted",
+          "name": "submitted_at",
+          "type": "TIMESTAMP",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-att-score",
+          "name": "score",
+          "type": "DECIMAL(5,2)",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-att-passed",
+          "name": "passed",
+          "type": "BOOLEAN",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-att-number",
+          "name": "attempt_number",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    },
+    {
+      "id": "t-responses",
+      "name": "student_responses",
+      "fields": [
+        {
+          "id": "f-res-id",
+          "name": "response_id",
+          "type": "INT",
+          "isPrimary": true,
+          "isNullable": false,
+          "isUnique": false
+        },
+        {
+          "id": "f-res-attempt",
+          "name": "attempt_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-attempts",
+            "fieldId": "f-att-id"
+          }
+        },
+        {
+          "id": "f-res-question",
+          "name": "question_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-questions",
+            "fieldId": "f-que-id"
+          }
+        },
+        {
+          "id": "f-res-choice",
+          "name": "selected_choice_id",
+          "type": "INT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false,
+          "foreignKey": {
+            "tableId": "t-choices",
+            "fieldId": "f-cho-id"
+          }
+        },
+        {
+          "id": "f-res-text",
+          "name": "text_answer",
+          "type": "TEXT",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-res-correct",
+          "name": "is_correct",
+          "type": "BOOLEAN",
+          "isPrimary": false,
+          "isNullable": true,
+          "isUnique": false
+        },
+        {
+          "id": "f-res-points",
+          "name": "points_earned",
+          "type": "DECIMAL(5,2)",
+          "isPrimary": false,
+          "isNullable": false,
+          "isUnique": false
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r1",
+      "name": "quiz_course",
+      "sourceTableId": "t-quizzes",
+      "sourceFieldId": "f-qui-course",
+      "targetTableId": "t-courses",
+      "targetFieldId": "f-cou-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r2",
+      "name": "question_quiz",
+      "sourceTableId": "t-questions",
+      "sourceFieldId": "f-que-quiz",
+      "targetTableId": "t-quizzes",
+      "targetFieldId": "f-qui-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r3",
+      "name": "choice_question",
+      "sourceTableId": "t-choices",
+      "sourceFieldId": "f-cho-question",
+      "targetTableId": "t-questions",
+      "targetFieldId": "f-que-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r4",
+      "name": "attempt_student",
+      "sourceTableId": "t-attempts",
+      "sourceFieldId": "f-att-student",
+      "targetTableId": "t-students",
+      "targetFieldId": "f-stu-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r5",
+      "name": "attempt_quiz",
+      "sourceTableId": "t-attempts",
+      "sourceFieldId": "f-att-quiz",
+      "targetTableId": "t-quizzes",
+      "targetFieldId": "f-qui-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r6",
+      "name": "response_attempt",
+      "sourceTableId": "t-responses",
+      "sourceFieldId": "f-res-attempt",
+      "targetTableId": "t-attempts",
+      "targetFieldId": "f-att-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r7",
+      "name": "response_question",
+      "sourceTableId": "t-responses",
+      "sourceFieldId": "f-res-question",
+      "targetTableId": "t-questions",
+      "targetFieldId": "f-que-id",
+      "type": "one-to-many"
+    },
+    {
+      "id": "r8",
+      "name": "response_choice",
+      "sourceTableId": "t-responses",
+      "sourceFieldId": "f-res-choice",
+      "targetTableId": "t-choices",
+      "targetFieldId": "f-cho-id",
+      "type": "one-to-many"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "t-students",
+      "type": "tableNode",
+      "position": {
+        "x": 1140,
+        "y": 32
+      },
+      "data": {
+        "table": {
+          "id": "t-students",
+          "name": "students",
+          "fields": [
+            {
+              "id": "f-stu-id",
+              "name": "student_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-stu-email",
+              "name": "email",
+              "type": "VARCHAR(255)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": true
+            },
+            {
+              "id": "f-stu-name",
+              "name": "name",
+              "type": "VARCHAR(255)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-stu-enroll",
+              "name": "enrollment_date",
+              "type": "TIMESTAMP",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-stu-active",
+              "name": "is_active",
+              "type": "BOOLEAN",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 251
+    },
+    {
+      "id": "t-courses",
+      "type": "tableNode",
+      "position": {
+        "x": 1520,
+        "y": 371
+      },
+      "data": {
+        "table": {
+          "id": "t-courses",
+          "name": "courses",
+          "fields": [
+            {
+              "id": "f-cou-id",
+              "name": "course_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cou-name",
+              "name": "course_name",
+              "type": "VARCHAR(255)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cou-desc",
+              "name": "description",
+              "type": "TEXT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-cou-threshold",
+              "name": "passing_threshold",
+              "type": "DECIMAL(5,2)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cou-active",
+              "name": "is_active",
+              "type": "BOOLEAN",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cou-created",
+              "name": "created_at",
+              "type": "TIMESTAMP",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 286
+    },
+    {
+      "id": "t-quizzes",
+      "type": "tableNode",
+      "position": {
+        "x": 1140,
+        "y": 329
+      },
+      "data": {
+        "table": {
+          "id": "t-quizzes",
+          "name": "quizzes",
+          "fields": [
+            {
+              "id": "f-qui-id",
+              "name": "quiz_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-course",
+              "name": "course_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-courses",
+                "fieldId": "f-cou-id"
+              }
+            },
+            {
+              "id": "f-qui-name",
+              "name": "quiz_name",
+              "type": "VARCHAR(255)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-desc",
+              "name": "description",
+              "type": "TEXT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-time",
+              "name": "time_limit_minutes",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-attempts",
+              "name": "max_attempts",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-pass",
+              "name": "passing_score",
+              "type": "DECIMAL(5,2)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-active",
+              "name": "is_active",
+              "type": "BOOLEAN",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-qui-created",
+              "name": "created_at",
+              "type": "TIMESTAMP",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 393
+    },
+    {
+      "id": "t-questions",
+      "type": "tableNode",
+      "position": {
+        "x": 760,
+        "y": 367
+      },
+      "data": {
+        "table": {
+          "id": "t-questions",
+          "name": "questions",
+          "fields": [
+            {
+              "id": "f-que-id",
+              "name": "question_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-que-quiz",
+              "name": "quiz_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-quizzes",
+                "fieldId": "f-qui-id"
+              }
+            },
+            {
+              "id": "f-que-text",
+              "name": "question_text",
+              "type": "TEXT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-que-type",
+              "name": "question_type",
+              "type": "VARCHAR(50)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-que-points",
+              "name": "points",
+              "type": "DECIMAL(5,2)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-que-correct",
+              "name": "correct_answer",
+              "type": "TEXT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-que-order",
+              "name": "order_in_quiz",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 322
+    },
+    {
+      "id": "t-choices",
+      "type": "tableNode",
+      "position": {
+        "x": 380,
+        "y": 470
+      },
+      "data": {
+        "table": {
+          "id": "t-choices",
+          "name": "answer_choices",
+          "fields": [
+            {
+              "id": "f-cho-id",
+              "name": "choice_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cho-question",
+              "name": "question_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-questions",
+                "fieldId": "f-que-id"
+              }
+            },
+            {
+              "id": "f-cho-text",
+              "name": "choice_text",
+              "type": "TEXT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cho-correct",
+              "name": "is_correct",
+              "type": "BOOLEAN",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-cho-order",
+              "name": "order_in_question",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 251
+    },
+    {
+      "id": "t-attempts",
+      "type": "tableNode",
+      "position": {
+        "x": 760,
+        "y": 0
+      },
+      "data": {
+        "table": {
+          "id": "t-attempts",
+          "name": "quiz_attempts",
+          "fields": [
+            {
+              "id": "f-att-id",
+              "name": "attempt_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-att-student",
+              "name": "student_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-students",
+                "fieldId": "f-stu-id"
+              }
+            },
+            {
+              "id": "f-att-quiz",
+              "name": "quiz_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-quizzes",
+                "fieldId": "f-qui-id"
+              }
+            },
+            {
+              "id": "f-att-started",
+              "name": "started_at",
+              "type": "TIMESTAMP",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-att-submitted",
+              "name": "submitted_at",
+              "type": "TIMESTAMP",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-att-score",
+              "name": "score",
+              "type": "DECIMAL(5,2)",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-att-passed",
+              "name": "passed",
+              "type": "BOOLEAN",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-att-number",
+              "name": "attempt_number",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 357
+    },
+    {
+      "id": "t-responses",
+      "type": "tableNode",
+      "position": {
+        "x": 0,
+        "y": 202
+      },
+      "data": {
+        "table": {
+          "id": "t-responses",
+          "name": "student_responses",
+          "fields": [
+            {
+              "id": "f-res-id",
+              "name": "response_id",
+              "type": "INT",
+              "isPrimary": true,
+              "isNullable": false,
+              "isUnique": false
+            },
+            {
+              "id": "f-res-attempt",
+              "name": "attempt_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-attempts",
+                "fieldId": "f-att-id"
+              }
+            },
+            {
+              "id": "f-res-question",
+              "name": "question_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-questions",
+                "fieldId": "f-que-id"
+              }
+            },
+            {
+              "id": "f-res-choice",
+              "name": "selected_choice_id",
+              "type": "INT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false,
+              "foreignKey": {
+                "tableId": "t-choices",
+                "fieldId": "f-cho-id"
+              }
+            },
+            {
+              "id": "f-res-text",
+              "name": "text_answer",
+              "type": "TEXT",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-res-correct",
+              "name": "is_correct",
+              "type": "BOOLEAN",
+              "isPrimary": false,
+              "isNullable": true,
+              "isUnique": false
+            },
+            {
+              "id": "f-res-points",
+              "name": "points_earned",
+              "type": "DECIMAL(5,2)",
+              "isPrimary": false,
+              "isNullable": false,
+              "isUnique": false
+            }
+          ]
+        }
+      },
+      "width": 260,
+      "height": 322
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-r1",
+      "source": "t-quizzes",
+      "target": "t-courses",
+      "sourceHandle": "f-qui-course-source",
+      "targetHandle": "f-cou-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r2",
+      "source": "t-questions",
+      "target": "t-quizzes",
+      "sourceHandle": "f-que-quiz-source",
+      "targetHandle": "f-qui-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r3",
+      "source": "t-choices",
+      "target": "t-questions",
+      "sourceHandle": "f-cho-question-source",
+      "targetHandle": "f-que-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r4",
+      "source": "t-attempts",
+      "target": "t-students",
+      "sourceHandle": "f-att-student-source",
+      "targetHandle": "f-stu-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r5",
+      "source": "t-attempts",
+      "target": "t-quizzes",
+      "sourceHandle": "f-att-quiz-source",
+      "targetHandle": "f-qui-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r6",
+      "source": "t-responses",
+      "target": "t-attempts",
+      "sourceHandle": "f-res-attempt-source",
+      "targetHandle": "f-att-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r7",
+      "source": "t-responses",
+      "target": "t-questions",
+      "sourceHandle": "f-res-question-source",
+      "targetHandle": "f-que-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    },
+    {
+      "id": "edge-r8",
+      "source": "t-responses",
+      "target": "t-choices",
+      "sourceHandle": "f-res-choice-source",
+      "targetHandle": "f-cho-id-target",
+      "type": "relationship",
+      "data": {
+        "showCardinality": true
+      }
+    }
+  ],
+  "timestamp": 1788407432129,
+  "version": "1.0"
+}
